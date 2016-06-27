@@ -1,17 +1,9 @@
-  <div class="view">
-    <input {{action 'complete'}} class="toggle" type="checkbox" >
+{{#if editing}}
+  {{input key-up=(action 'changeValue')  class="edit" value=item.title }}
+{{else}}
+  <div class="view" {{action 'edit'  on="doubleClick"}}>
+    <input {{action 'completeTodo' item preventDefault=false }} class="toggle" type="checkbox" >
     <label>{{item.title}}</label>
-    <button {{action 'delete'}} class="destroy"></button>
+    <button {{action 'deleteTodo' item}} class="destroy"></button>
   </div>
-  <input class="edit" value="Create a TodoMVC template">
-<!--
-
-<li class="completed">
-  <div class="view">
-    <input class="toggle" type="checkbox">
-    <label>Buy a unicorn</label>
-    <button class="destroy"></button>
-  </div>
-  <input class="edit" value="Rule the web">
-</li>
--->
+{{/if}}
